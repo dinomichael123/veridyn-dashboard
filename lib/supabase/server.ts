@@ -9,21 +9,16 @@ export function createClient() {
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
+        getAll() {
+          return cookieStore.getAll()
         },
-        set(name: string, value: string, options: Parameters<typeof cookieStore.set>[2]) {
+        setAll(cookiesToSet) {
           try {
-            cookieStore.set({ name, value, ...options })
+            cookiesToSet.forEach(({ name, value, options }) =>
+              cookieStore.set(name, value, options)
+            )
           } catch {
-            // Server Components can't set cookies; ignore
-          }
-        },
-        remove(name: string, options: Parameters<typeof cookieStore.set>[2]) {
-          try {
-            cookieStore.set({ name, value: '', ...options })
-          } catch {
-            // Server Components can't set cookies; ignore
+            // Server component — cookie writes are ignored
           }
         },
       },

@@ -4,17 +4,22 @@ import { createClient } from '@/lib/supabase/client'
 
 export function useRealtimeTable<T extends { id: string | number }>(
   table: string,
-  query?: (q: ReturnType<ReturnType<typeof createClient>['from']>) => unknown
+  options?: { orderBy?: string; ascending?: boolean }
 ) {
   const [data, setData] = useState<T[]>([])
   const [loading, setLoading] = useState(true)
   const supabase = createClient()
+  const orderBy = options?.orderBy ?? 'updated_at'
+  const ascending = options?.ascending ?? false
 
   useEffect(() => {
-    const q = supabase.from(table).select('*').order('updated_at', { ascending: false })
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    ;(query ? (query(supabase.from(table)) as any) : q).then(({ data: rows }: { data: T[] | null }) => {
-      setData(rows ?? [])
+    let query = supabase.from(table).select('*')
+    // Only apply ordering if a column was specified
+    if (orderBy) {
+      query = query.order(orderBy, { ascending }) as any
+    }
+    query.then(({ data: rows }) => {
+      setData((rows as T[]) ?? [])
       setLoading(false)
     })
 
@@ -32,6 +37,7 @@ export function useRealtimeTable<T extends { id: string | number }>(
       .subscribe()
 
     return () => { supabase.removeChannel(channel) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [table])
 
   return { data, loading }
