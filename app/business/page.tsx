@@ -2,6 +2,9 @@ export const dynamic = 'force-dynamic'
 
 import { JobsBoardPanel } from '@/components/panels/JobsBoardPanel'
 import { ContentCalendarPanel } from '@/components/panels/ContentCalendarPanel'
+import { SeoTrafficPanel } from '@/components/panels/SeoTrafficPanel'
+import { EmailMarketingPanel } from '@/components/panels/EmailMarketingPanel'
+import { SlackFeedPanel } from '@/components/panels/SlackFeedPanel'
 
 export default function BusinessPage() {
   return (
@@ -9,17 +12,10 @@ export default function BusinessPage() {
       <JobsBoardPanel />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ContentCalendarPanel />
-        <div className="panel">
-          <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
-            SEO &amp; Traffic
-          </h2>
-          <p className="text-xs text-zinc-600 mt-1">Semrush data — coming in Task 10</p>
-        </div>
-        <div className="panel md:col-span-2">
-          <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
-            Email &amp; Marketing
-          </h2>
-          <p className="text-xs text-zinc-600 mt-1">Klaviyo data — coming in Task 10</p>
+        <SeoTrafficPanel />
+        <EmailMarketingPanel />
+        <div className="md:col-span-2">
+          <SlackFeedPanel />
         </div>
       </div>
     </div>
