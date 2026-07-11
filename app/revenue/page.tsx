@@ -3,6 +3,7 @@ export const dynamic = 'force-dynamic'
 import { RevenueSummaryCard } from '@/components/panels/RevenueSummaryCard'
 import { RevenueSourcesPanel } from '@/components/panels/RevenueSourcesPanel'
 import { YouTubeDeepDivePanel } from '@/components/panels/YouTubeDeepDivePanel'
+import { RevenueAdvisorPanel } from '@/components/panels/RevenueAdvisorPanel'
 
 export default function RevenuePage() {
   return (
@@ -12,6 +13,7 @@ export default function RevenuePage() {
         <RevenueSourcesPanel />
         <YouTubeDeepDivePanel />
       </div>
+      <RevenueAdvisorPanel />
     </div>
   )
 }
