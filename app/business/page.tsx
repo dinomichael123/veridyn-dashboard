@@ -1,18 +1,14 @@
 export const dynamic = 'force-dynamic'
 
 import { JobsBoardPanel } from '@/components/panels/JobsBoardPanel'
+import { ContentCalendarPanel } from '@/components/panels/ContentCalendarPanel'
 
 export default function BusinessPage() {
   return (
     <div className="space-y-4">
       <JobsBoardPanel />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="panel">
-          <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
-            Content Calendar
-          </h2>
-          <p className="text-xs text-zinc-600 mt-1">YouTube scheduling — coming in Task 9</p>
-        </div>
+        <ContentCalendarPanel />
         <div className="panel">
           <h2 className="text-sm font-semibold text-zinc-400 uppercase tracking-wider">
             SEO &amp; Traffic
