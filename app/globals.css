@@ -98,3 +98,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .panel {
+    @apply bg-zinc-900 border border-zinc-800 rounded-xl p-4;
+  }
+}
