@@ -26,7 +26,12 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+# This repo is public, so ignore every .env variant and allow only the
+# committed template back in. ".env*.local" alone did not cover a plain
+# ".env", which is the file people actually paste real keys into.
+.env
+.env.*
+!.env.example
 
 # vercel
 .vercel
@@ -34,5 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-.vercel
